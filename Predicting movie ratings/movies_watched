@@ -1,0 +1,109 @@
+-- Create table containing movies I've rated on IMDb
+CREATE TABLE movies_watched (
+    id INTEGER PRIMARY KEY,
+    title TEXT,
+    director TEXT,
+    genre TEXT,
+    year_watched INTEGER,
+    my_rating INTEGER,
+    imdb_rating INTEGER);
+
+INSERT INTO movies_watched (title, director, genre, year_watched, my_rating, imdb_rating) 
+VALUES 
+('Inception', 'Christopher Nolan', 'Sci-Fi', 2010, 9.5, 8.8),
+('The Godfather', 'Francis Ford Coppola', 'Crime', 1972, 7, 9.2),
+('Pulp Fiction', 'Quentin Tarantino', 'Crime', 1994, 8, 8.9),
+('The Shawshank Redemption', 'Frank Darabont', 'Drama', 1994, 6, 9.3),
+('The Dark Knight', 'Christopher Nolan', 'Action', 2008, 8.5, 9.0),
+('Forrest Gump', 'Robert Zemeckis', 'Drama', 1994, 7.5, 8.8),
+('The Matrix', 'Lana Wachowski, Lilly Wachowski', 'Action', 1999, 7, 8.7),
+('Fight Club', 'David Fincher', 'Drama', 1999, 8, 8.8),
+('Goodfellas', 'Martin Scorsese', 'Crime', 1990, 8, 8.7),
+('The Lord of the Rings: The Return of the King', 'Peter Jackson', 'Adventure', 2003, 9, 8.9),
+('The Silence of the Lambs', 'Jonathan Demme', 'Crime', 1991, 8, 8.6),
+('Se7en', 'David Fincher', 'Crime', 1995, 8, 8.6),
+('Gladiator', 'Ridley Scott', 'Action', 2000, 6.5, 8.5),
+('Inglourious Basterds', 'Quentin Tarantino', 'Adventure', 2009, 7.5, 8.3),
+('The Departed', 'Martin Scorsese', 'Crime', 2006, 8, 8.5),
+('The Usual Suspects', 'Bryan Singer', 'Crime', 1995, 7, 8.5),
+('The Prestige', 'Christopher Nolan', 'Drama', 2006, 9, 8.5),
+('Interstellar', 'Christopher Nolan', 'Sci-Fi', 2014, 10, 8.6),
+('Saving Private Ryan', 'Steven Spielberg', 'Drama', 1998, 8, 8.6),
+('The Green Mile', 'Frank Darabont', 'Crime', 1999, 6.5, 8.6),
+('The Lion King', 'Roger Allers, Rob Minkoff', 'Animation', 1994, 7.8, 8.5),
+('The Shining', 'Stanley Kubrick', 'Horror', 1980, 10, 8.4),
+('The Sixth Sense', 'M. Night Shyamalan', 'Drama', 1999, 8, 8.1),
+('The Truman Show', 'Peter Weir', 'Comedy', 1998, 8, 8.1),
+('The Social Network', 'David Fincher', 'Biography', 2010, 8, 7.7),
+('Shutter Island', 'Martin Scorsese', 'Mystery', 2010, 8.7, 8.2),
+('The Big Lebowski', 'Joel Coen, Ethan Coen', 'Comedy', 1998, 6.8, 8.1),
+('Django Unchained', 'Quentin Tarantino', 'Drama', 2012, 9.2, 8.4),
+('The Godfather: Part II', 'Francis Ford Coppola', 'Crime', 1974, 8, 9.0),
+('Schindlers List', 'Steven Spielberg', 'Biography', 1993, 8, 8.9),
+('The Godfather: Part III', 'Francis Ford Coppola', 'Crime', 1990, 8, 7.6),
+('American History X', 'Tony Kaye', 'Drama', 1998, 6.5, 8.5),
+('The Terminator', 'James Cameron', 'Action', 1984, 7.5, 8.0),
+('Jurassic Park', 'Steven Spielberg', 'Adventure', 1993, 7.4, 8.1),
+('The Grand Budapest Hotel', 'Wes Anderson', 'Adventure', 2014, 8.5, 8.1),
+('Blade Runner', 'Ridley Scott', 'Sci-Fi', 1982, 7.5, 8.1),
+('Inception', 'Christopher Nolan', 'Sci-Fi', 2010, 8.5, 8.8),
+('The Godfather', 'Francis Ford Coppola', 'Crime', 1972, 9, 9.2),
+('Pulp Fiction', 'Quentin Tarantino', 'Crime', 1994, 8, 8.9),
+('The Shawshank Redemption', 'Frank Darabont', 'Drama', 1994, 6.5, 9.3),
+('The Dark Knight', 'Christopher Nolan', 'Action', 2008, 8.5, 9.0),
+('Forrest Gump', 'Robert Zemeckis', 'Drama', 1994, 7.5, 8.8),
+('The Matrix', 'Lana Wachowski, Lilly Wachowski', 'Action', 1999, 8.5, 8.7),
+('Fight Club', 'David Fincher', 'Drama', 1999, 8.5, 8.8),
+('Goodfellas', 'Martin Scorsese', 'Crime', 1990, 6.5, 8.7),
+('The Lord of the Rings: The Return of the King', 'Peter Jackson', 'Adventure', 2003, 7.5, 8.9),
+('The Silence of the Lambs', 'Jonathan Demme', 'Crime', 1991, 8.8, 8.6);
+
+-- Display all movies rated through IMDb from highest to lowest rating
+SELECT title, director, genre, year_watched, my_rating, imdb_rating
+  FROM movies_watched
+  ORDER BY imdb_rating DESC;
+
+-- Display directors seen more than once, sorted from most to least works watched
+SELECT director, COUNT(*) AS works_watched_count
+  FROM movies_watched
+  GROUP BY director
+  HAVING COUNT(*) > 1
+  ORDER BY works_watched_count DESC;
+
+-- Find movies rated higher than the IMDb average rating
+SELECT title, director, my_rating, imdb_rating
+  FROM movies_watched
+  WHERE my_rating > imdb_rating
+  ORDER BY my_rating DESC;
+
+-- Find movies rated lower than  the IMDb average rating
+SELECT title, director, my_rating, imdb_rating
+  FROM movies_watched
+  WHERE my_rating < imdb_rating 
+  FROM movies_watched;
+
+-- Select movies with ID, title, and director where ID is greater than 45
+SELECT id, title, director 
+FROM movies_watched 
+WHERE id > 45;
+
+-- Delete the movie with ID 38
+DELETE FROM movies_watched 
+WHERE id = 38;
+
+-- Select movies with ID, title, and director where ID is greater than 45 after deletion
+SELECT id, title, director 
+FROM movies_watched 
+WHERE id > 45;
+
+-- Display table data sorted by genre
+SELECT genre, COUNT(*) as by_genre 
+FROM movies_watched 
+GROUP BY genre 
+ORDER BY by_genre DESC;
+
+-- Insert a new entry into the movies_watched table
+INSERT INTO movies_watched (title, director, genre, year_watched, my_rating, imdb_rating) 
+VALUES 
+('The Avengers', 'Joss Whedon', 'Action', 2012, 8.5, 8.0);
+
