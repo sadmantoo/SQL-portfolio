@@ -1,6 +1,6 @@
 # Country Demographic Data Analysis
 
-This repository contains SQL queries and analysis for a database of country demographic data. The database includes information such as population, population growth, fertility rate, median age, and more for various countries around the world.
+This repository contains SQL queries and analysis for a database of country demographic data. The database includes information such as population, population growth, fertility rate, median age, and more for the top 25 countries around the world.
 
 ## Table of Contents
 
